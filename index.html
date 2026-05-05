@@ -7,15 +7,37 @@
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Oswald:wght@700&display=swap" rel="stylesheet">
     <style>
-        :root { --glass: rgba(255, 255, 255, 0.05); --glass-border: rgba(255, 255, 255, 0.1); --accent-yellow: #facc15; --accent-blue: #00d2ff; --accent-red: #ff4747; }
-        body { background: #000; color: white; font-family: 'Montserrat', sans-serif; margin: 0; padding: 20px; text-align: center; overflow-x: hidden; }
-        .header { font-size: 26px; text-transform: uppercase; margin-bottom: 25px; font-weight: 900; letter-spacing: 1px; }
+        :root { 
+            --glass: rgba(255, 255, 255, 0.05); 
+            --glass-border: rgba(255, 255, 255, 0.1); 
+            --accent-yellow: #facc15; 
+            --accent-blue: #00d2ff; 
+            --accent-red: #ff4747; 
+        }
+        body { 
+            background: #000; 
+            color: white; 
+            font-family: 'Montserrat', sans-serif; 
+            margin: 0; 
+            padding: 20px; 
+            text-align: center; 
+            overflow-x: hidden; 
+        }
+        .header { 
+            font-size: 26px; 
+            text-transform: uppercase; 
+            margin-bottom: 25px; 
+            font-weight: 900; 
+            letter-spacing: 1px; 
+        }
         
-        /* АКЦИЯ */
+        /* FLASH SALE */
         .sale-card { 
             background: linear-gradient(135deg, rgba(255, 71, 71, 0.2), rgba(0,0,0,0.5)); 
             border: 2px dashed var(--accent-red); 
-            border-radius: 20px; padding: 15px; margin-bottom: 20px;
+            border-radius: 20px; 
+            padding: 15px; 
+            margin-bottom: 20px;
             animation: pulse 2s infinite;
         }
         @keyframes pulse {
@@ -26,23 +48,56 @@
 
         /* BRAWL PASS */
         .brawl-pass { 
-            background: rgba(250, 204, 21, 0.1); 
-            backdrop-filter: blur(10px); 
+            background: linear-gradient(180deg, rgba(250, 204, 21, 0.1) 0%, rgba(0,0,0,0.8) 100%); 
             border: 1px solid var(--accent-yellow); 
-            border-radius: 24px; padding: 20px; margin-bottom: 25px; 
+            border-radius: 24px; 
+            padding: 25px; 
+            margin-bottom: 25px; 
         }
-        .bp-title { font-family: 'Oswald', sans-serif; font-size: 22px; color: var(--accent-yellow); text-transform: uppercase; margin-bottom: 15px; }
+        .bp-title { 
+            font-family: 'Oswald', sans-serif; 
+            font-size: 22px; 
+            color: var(--accent-yellow); 
+            text-transform: uppercase; 
+            margin-bottom: 15px; 
+        }
         
-        /* СЕТКА ГЕМОВ */
-        h2 { text-align: left; font-size: 14px; color: var(--accent-blue); margin: 20px 0 10px 5px; text-transform: uppercase; }
-        .gems-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .gem-card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 18px; padding: 15px; }
+        /* КРИСТАЛЛЫ */
+        h2 { 
+            text-align: left; 
+            font-size: 14px; 
+            color: var(--accent-blue); 
+            margin: 20px 0 10px 5px; 
+            text-transform: uppercase; 
+        }
+        .gems-grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 12px; 
+        }
+        .gem-card { 
+            background: var(--glass); 
+            border: 1px solid var(--glass-border); 
+            border-radius: 18px; 
+            padding: 15px; 
+        }
         
         /* КНОПКИ */
-        .btn { width: 100%; border: none; padding: 12px; border-radius: 12px; font-weight: 900; text-transform: uppercase; cursor: pointer; transition: 0.1s; font-size: 14px; color: #fff; }
-        .btn-yellow { background: var(--accent-yellow); color: #000; }
-        .btn-blue { background: var(--accent-blue); }
-        .btn-red { background: var(--accent-red); }
+        .btn { 
+            width: 100%; 
+            border: none; 
+            padding: 12px; 
+            border-radius: 12px; 
+            font-weight: 900; 
+            text-transform: uppercase; 
+            cursor: pointer; 
+            transition: 0.1s; 
+            font-size: 14px; 
+            color: #fff; 
+        }
+        .btn-yellow { background: var(--accent-yellow); color: #000; box-shadow: 0 4px 15px rgba(250, 204, 21, 0.3); }
+        .btn-blue { background: var(--accent-blue); box-shadow: 0 4px 15px rgba(0, 210, 255, 0.3); }
+        .btn-red { background: var(--accent-red); box-shadow: 0 4px 15px rgba(255, 71, 71, 0.3); }
         .btn:active { transform: scale(0.95); }
         .gem-name { font-size: 14px; font-weight: 700; margin-bottom: 10px; }
     </style>
@@ -57,12 +112,12 @@
     </div>
 
     <div class="brawl-pass">
-        <div style="font-size: 40px; margin-bottom: 5px;">🎫</div>
-        <div class="bp-title">Brawl Pass Plus</div>
+        <div style="font-size: 40px; margin-bottom: 10px;">🎫</div>
+        <div class="bp-title">BRAWL PASS PLUS</div>
         <button class="btn btn-yellow" onclick="buy('PASS_PLUS_999')">КУПИТЬ ЗА 999 ₽</button>
     </div>
 
-    <h2>Кристаллы 💎</h2>
+    <h2>КРИСТАЛЛЫ 💎</h2>
     <div class="gems-grid">
         <div class="gem-card"><div class="gem-name">30 ГЕМОВ</div><button class="btn btn-blue" onclick="buy('GEMS_30_199')">199 ₽</button></div>
         <div class="gem-card"><div class="gem-name">80 ГЕМОВ</div><button class="btn btn-blue" onclick="buy('GEMS_80_449')">449 ₽</button></div>
@@ -78,10 +133,12 @@
         tg.setBackgroundColor('#000000');
 
         function buy(params) {
-            // ВСТАВЬ СЮДА ЮЗЕРНЕЙМ БОТА БЕЗ @
-            const botNick = "ТВОЙ_ЮЗЕРНЕЙМ_БОТА"; 
-            const link = `https://t.me/${botNick}?start=buy_${params}`;
+            // ЗАМЕНИ НА СВОЙ ЮЗЕРНЕЙМ БЕЗ @
+            const botUsername = "ТВОЙ_ЮЗЕРНЕЙМ_БОТА"; 
+            const link = `https://t.me/${botUsername}?start=buy_${params}`;
+            
             if (tg.HapticFeedback) tg.HapticFeedback.impactOccurred('medium');
+            
             tg.openTelegramLink(link);
             tg.close();
         }
