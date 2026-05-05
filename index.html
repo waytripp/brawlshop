@@ -3,56 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Elite Brawl Shop</title>
+    <title>Brawl Shop</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #121212; color: white; text-align: center; margin: 0; padding: 20px; }
-        .header { margin-bottom: 30px; }
-        .header h2 { color: #ffcb05; text-shadow: 2px 2px #000; font-size: 28px; margin: 10px 0; }
-        .item { background: #1e1e1e; border-radius: 20px; padding: 20px; margin-bottom: 20px; border: 2px solid #333; transition: 0.3s; }
-        .item:active { transform: scale(0.98); border-color: #ffcb05; }
-        .gems-img { width: 100px; height: auto; filter: drop-shadow(0 0 10px rgba(255, 203, 5, 0.3)); }
-        .gems-count { font-size: 22px; font-weight: bold; margin: 10px 0; }
-        .price { color: #00ff44; font-weight: bold; font-size: 24px; margin-bottom: 15px; }
-        .buy-btn { background: linear-gradient(180deg, #0088cc 0%, #005588 100%); color: white; border: none; padding: 15px; border-radius: 12px; width: 100%; font-size: 18px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+        body { font-family: sans-serif; background: #121212; color: white; text-align: center; padding: 20px; }
+        .item { background: #1e1e1e; border: 2px solid #ffcb05; border-radius: 15px; padding: 15px; margin-bottom: 15px; }
+        .price { color: #ffcb05; font-size: 24px; font-weight: bold; margin: 10px 0; }
+        button { background: #0088cc; color: white; border: none; padding: 15px; border-radius: 10px; width: 100%; font-size: 18px; font-weight: bold; cursor: pointer; }
+        button:active { background: #005588; }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h2>🦅 ELITE SHOP</h2>
-        <p>Лучшие цены на гемы</p>
-    </div>
+    <h2>🦅 ELITE SHOP</h2>
     
     <div class="item">
-        <img src="https://cdn-icons-png.flaticon.com/512/3233/3233480.png" class="gems-img">
-        <div class="gems-count">30 ГЕМОВ</div>
+        <p>30 ГЕМОВ</p>
         <div class="price">199₽</div>
-        <button class="buy-btn" onclick="buy('30', '199')">КУПИТЬ</button>
+        <button onclick="buy('30', '199')">КУПИТЬ</button>
     </div>
 
     <div class="item">
-        <img src="https://cdn-icons-png.flaticon.com/512/3233/3233480.png" class="gems-img">
-        <div class="gems-count">80 ГЕМОВ</div>
+        <p>80 ГЕМОВ</p>
         <div class="price">449₽</div>
-        <button class="buy-btn" onclick="buy('80', '449')">КУПИТЬ</button>
+        <button onclick="buy('80', '449')">КУПИТЬ</button>
     </div>
 
     <script>
         let tg = window.Telegram.WebApp;
         tg.expand();
 
-        // ⚠️ ЗАМЕНИ НА СВОЙ ЮЗЕРНЕЙМ БЕЗ @ (например: "my_brawl_bot")
+        // ЗАМЕНИ НИЖЕ НА ЮЗЕРНЕЙМ БОТА (БЕЗ @)
         const BOT_USERNAME = "brawlstarssellerbot"; 
 
-function buy(gems, price) {
-    alert("Нажал на " + gems + " гемов. Перехожу к боту: " + BOT_USERNAME);
-    const command = `buy_${gems}_${price}`;
-    const link = `https://t.me/${BOT_USERNAME}?start=${command}`;
-    tg.openTelegramLink(link);
-}
-            const command = `buy_${gems}_${price}`;
-            const link = `https://t.me/${BOT_USERNAME}?start=${command}`;
-            tg.openTelegramLink(link);
+        function buy(gems, price) {
+            try {
+                if (BOT_USERNAME.includes("@") || BOT_USERNAME === "brawlstarssellerbot") {
+                    alert("ОШИБКА: Неверно указан юзернейм бота в HTML (убери @)!");
+                    return;
+                }
+                
+                const command = `buy_${gems}_${price}`;
+                const link = `https://t.me/${BOT_USERNAME}?start=${command}`;
+                
+                // Пробуем закрыть и перейти
+                tg.openTelegramLink(link);
+                tg.close();
+            } catch (e) {
+                alert("Ошибка: " + e.message);
+            }
         }
     </script>
 </body>
