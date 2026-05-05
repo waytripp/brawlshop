@@ -7,33 +7,33 @@
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Oswald:wght@700&display=swap" rel="stylesheet">
     <style>
-        :root { --accent-yellow: #facc15; --accent-blue: #00d2ff; --accent-red: #ff4747; }
         body { background: #000; color: white; font-family: 'Montserrat', sans-serif; margin: 0; padding: 20px; text-align: center; }
         .header { font-size: 26px; text-transform: uppercase; margin-bottom: 25px; font-weight: 900; }
         
+        /* КАРТОЧКА АКЦИИ */
         .sale-card { 
             background: linear-gradient(135deg, rgba(255, 71, 71, 0.2), rgba(0,0,0,0.5)); 
-            border: 2px dashed var(--accent-red); 
-            border-radius: 20px; padding: 15px; margin-bottom: 20px;
+            border: 2px dashed #ff4747; border-radius: 20px; padding: 15px; margin-bottom: 20px;
             animation: pulse 2s infinite;
         }
         @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(255, 71, 71, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(255, 71, 71, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 71, 71, 0); } }
 
+        /* BRAWL PASS */
         .brawl-pass { 
             background: linear-gradient(180deg, rgba(250, 204, 21, 0.1) 0%, rgba(0,0,0,0.8) 100%); 
-            border: 1px solid var(--accent-yellow); 
-            border-radius: 24px; padding: 25px; margin-bottom: 25px; 
+            border: 1px solid #facc15; border-radius: 24px; padding: 25px; margin-bottom: 25px; 
         }
-        .bp-title { font-family: 'Oswald', sans-serif; font-size: 22px; color: var(--accent-yellow); text-transform: uppercase; margin: 10px 0; }
+        .bp-title { font-family: 'Oswald', sans-serif; font-size: 22px; color: #facc15; text-transform: uppercase; margin: 10px 0; }
         
-        h2 { text-align: left; font-size: 14px; color: var(--accent-blue); margin: 20px 0 10px 5px; text-transform: uppercase; }
+        /* ГЕМЫ */
+        h2 { text-align: left; font-size: 14px; color: #00d2ff; margin: 20px 0 10px 5px; text-transform: uppercase; }
         .gems-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
         .gem-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 18px; padding: 15px; }
         
         .btn { width: 100%; border: none; padding: 12px; border-radius: 12px; font-weight: 900; text-transform: uppercase; cursor: pointer; color: #fff; font-size: 14px; }
-        .btn-yellow { background: var(--accent-yellow); color: #000; }
-        .btn-blue { background: var(--accent-blue); }
-        .btn-red { background: var(--accent-red); }
+        .btn-yellow { background: #facc15; color: #000; }
+        .btn-blue { background: #00d2ff; }
+        .btn-red { background: #ff4747; }
         .gem-name { font-size: 14px; font-weight: 700; margin-bottom: 10px; }
     </style>
 </head>
@@ -41,23 +41,23 @@
     <div class="header">🦅 KUZI SHOP</div>
 
     <div class="sale-card">
-        <div style="color: var(--accent-red); font-size: 12px; font-weight: bold;">⚡️ FLASH SALE ⚡️</div>
+        <div style="color: #ff4747; font-size: 12px; font-weight: bold;">⚡️ FLASH SALE ⚡️</div>
         <div style="font-size: 18px; margin: 10px 0; font-weight: 900;">1 ГЕМ</div>
-        <button class="btn btn-red" onclick="buy('SALE_1_1')">ЗАБРАТЬ ЗА 1 ₽</button>
+        <button class="btn btn-red" onclick="send('SALE-1-1')">ЗАБРАТЬ ЗА 1 ₽</button>
     </div>
 
     <div class="brawl-pass">
         <div style="font-size: 40px;">🎫</div>
         <div class="bp-title">BRAWL PASS PLUS</div>
-        <button class="btn btn-yellow" onclick="buy('PASS_PLUS_999')">КУПИТЬ ЗА 999 ₽</button>
+        <button class="btn btn-yellow" onclick="send('BP-PLUS-999')">КУПИТЬ ЗА 999 ₽</button>
     </div>
 
     <h2>КРИСТАЛЛЫ 💎</h2>
     <div class="gems-grid">
-        <div class="gem-card"><div class="gem-name">30 ГЕМОВ</div><button class="btn btn-blue" onclick="buy('GEMS_30_199')">199 ₽</button></div>
-        <div class="gem-card"><div class="gem-name">80 ГЕМОВ</div><button class="btn btn-blue" onclick="buy('GEMS_80_449')">449 ₽</button></div>
-        <div class="gem-card"><div class="gem-name">170 ГЕМОВ</div><button class="btn btn-blue" onclick="buy('GEMS_170_899')">899 ₽</button></div>
-        <div class="gem-card"><div class="gem-name">360 ГЕМОВ</div><button class="btn btn-blue" onclick="buy('GEMS_360_1790')">1790 ₽</button></div>
+        <div class="gem-card"><div class="gem-name">30 ГЕМОВ</div><button class="btn btn-blue" onclick="send('GEMS-30-199')">199 ₽</button></div>
+        <div class="gem-card"><div class="gem-name">80 ГЕМОВ</div><button class="btn btn-blue" onclick="send('GEMS-80-449')">449 ₽</button></div>
+        <div class="gem-card"><div class="gem-name">170 ГЕМОВ</div><button class="btn btn-blue" onclick="send('GEMS-170-899')">899 ₽</button></div>
+        <div class="gem-card"><div class="gem-name">360 ГЕМОВ</div><button class="btn btn-blue" onclick="send('GEMS-360-1790')">1790 ₽</button></div>
     </div>
 
     <script>
@@ -65,12 +65,11 @@
         tg.ready();
         tg.expand();
 
-        function buy(itemData) {
-            // !!! ВСТАВЬ ЮЗЕРНЕЙМ БОТА НИЖЕ !!!
-            const botUsername = "brawlstarssellerbot"; 
-            const url = "https://t.me/" + botUsername + "?start=" + itemData;
-            
-            tg.openTelegramLink(url);
+        function send(data) {
+            // !!! СЮДА ЮЗЕРНЕЙМ БОТА БЕЗ @ !!!
+            const botUser = "ТВОЙ_БОТ_USER"; 
+            const link = "https://t.me/" + botUser + "?start=" + data;
+            tg.openTelegramLink(link);
             tg.close();
         }
     </script>
