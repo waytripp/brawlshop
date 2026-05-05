@@ -8,28 +8,28 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Oswald:wght@700&display=swap" rel="stylesheet">
     <style>
         :root { --glass: rgba(255, 255, 255, 0.03); --glass-border: rgba(255, 255, 255, 0.1); --accent-yellow: #facc15; --accent-blue: #00d2ff; --accent-red: #ff4747; }
-        body { background: #000; color: white; font-family: 'Montserrat', sans-serif; margin: 0; padding: 20px; text-align: center; }
-        .header { font-size: 26px; text-transform: uppercase; margin-bottom: 25px; }
-        .sale-card { background: linear-gradient(135deg, rgba(255, 71, 71, 0.1), rgba(0,0,0,0.5)); border: 2px dashed var(--accent-red); border-radius: 20px; padding: 15px; margin-bottom: 20px; }
-        .brawl-pass { background: rgba(250, 204, 21, 0.05); backdrop-filter: blur(15px); border: 1px solid var(--accent-yellow); border-radius: 24px; padding: 20px; margin-bottom: 25px; }
+        body { background: #000; color: white; font-family: 'Montserrat', sans-serif; margin: 0; padding: 20px; text-align: center; min-height: 100vh; }
+        .header { font-size: 26px; text-transform: uppercase; margin-bottom: 25px; letter-spacing: 1px; }
+        .sale-card { background: linear-gradient(135deg, rgba(255, 71, 71, 0.15), rgba(0,0,0,0.5)); border: 2px dashed var(--accent-red); border-radius: 20px; padding: 15px; margin-bottom: 20px; box-shadow: 0 0 15px rgba(255, 71, 71, 0.1); }
+        .brawl-pass { background: rgba(250, 204, 21, 0.05); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid var(--accent-yellow); border-radius: 24px; padding: 20px; margin-bottom: 25px; }
         .bp-title { font-family: 'Oswald', sans-serif; font-size: 22px; color: var(--accent-yellow); text-transform: uppercase; margin-bottom: 15px; }
         .gems-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .gem-card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 18px; padding: 15px; }
-        .btn { width: 100%; border: none; padding: 10px; border-radius: 10px; font-weight: 900; text-transform: uppercase; cursor: pointer; transition: 0.2s; }
+        .gem-card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 18px; padding: 15px; backdrop-filter: blur(5px); }
+        .btn { width: 100%; border: none; padding: 10px; border-radius: 10px; font-weight: 900; text-transform: uppercase; cursor: pointer; transition: 0.2s; font-size: 14px; }
         .btn-yellow { background: var(--accent-yellow); color: #000; }
         .btn-blue { background: var(--accent-blue); color: #fff; }
         .btn-red { background: var(--accent-red); color: #fff; }
         .btn:active { transform: scale(0.95); }
-        h2 { text-align: left; font-size: 14px; color: var(--accent-blue); margin: 20px 0 10px 5px; }
+        h2 { text-align: left; font-size: 14px; color: var(--accent-blue); margin: 20px 0 10px 5px; text-transform: uppercase; }
     </style>
 </head>
 <body>
     <div class="header">🦅 KUZI SHOP</div>
 
     <div class="sale-card">
-        <div style="color: var(--accent-red); font-weight: bold; margin-bottom: 10px;">🔥 ТЕСТОВАЯ АКЦИЯ</div>
+        <div style="color: var(--accent-red); font-weight: bold; margin-bottom: 5px;">🔥 ТЕСТОВАЯ АКЦИЯ</div>
         <div style="font-size: 18px; margin-bottom: 10px;">1 ГЕМ</div>
-        <button class="btn btn-red" onclick="buy('SALE', '1GEM', 1)">КУПИТЬ — 1₽</button>
+        <button class="btn btn-red" onclick="buy('SALE', '1GEM', 1)">КУПИТЬ ЗА 1₽</button>
     </div>
 
     <div class="brawl-pass">
@@ -38,7 +38,7 @@
         <button class="btn btn-yellow" onclick="buy('PASS', 'STANDART', 999)">КУПИТЬ ЗА 999₽</button>
     </div>
 
-    <h2>КРИСТАЛЛЫ</h2>
+    <h2>Кристаллы</h2>
     <div class="gems-grid">
         <div class="gem-card"><div>30 ГЕМОВ</div><button class="btn btn-blue" onclick="buy('GEMS', '30', 199)">199 ₽</button></div>
         <div class="gem-card"><div>80 ГЕМОВ</div><button class="btn btn-blue" onclick="buy('GEMS', '80', 449)">449 ₽</button></div>
@@ -50,8 +50,9 @@
         let tg = window.Telegram.WebApp;
         tg.expand();
         tg.setHeaderColor('#000000');
+        tg.setBackgroundColor('#000000');
+
         function buy(type, amount, price) {
-            // Передаем данные в бот
             let bot_link = `https://t.me/brawlstarssellerbot?start=buy_${type}_${amount}_${price}`;
             tg.openTelegramLink(bot_link);
             tg.close();
