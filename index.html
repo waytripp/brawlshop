@@ -7,41 +7,98 @@
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
     <style>
-        body { background: #000; color: #fff; font-family: 'Montserrat', sans-serif; padding: 20px; text-align: center; }
-        .header { font-size: 24px; margin-bottom: 20px; text-transform: uppercase; }
-        .card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 15px; margin-bottom: 15px; }
-        .btn { width: 100%; border: none; padding: 12px; border-radius: 10px; font-weight: 900; cursor: pointer; color: #fff; text-transform: uppercase; }
-        .btn-blue { background: #00d2ff; }
-        .btn-red { background: #ff4747; }
-        .btn-yellow { background: #facc15; color: #000; }
+        :root {
+            --bg: #000000;
+            --accent: #00d2ff;
+            --gold: #facc15;
+            --red: #ff4747;
+            --card-bg: rgba(255, 255, 255, 0.07);
+        }
+        body {
+            background: var(--bg);
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        .header { font-size: 26px; margin-bottom: 25px; font-weight: 900; letter-spacing: 1px; }
+        .category-title { text-align: left; font-size: 14px; color: var(--accent); margin: 20px 0 10px 5px; text-transform: uppercase; }
+        .card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 18px;
+            padding: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .item-info { text-align: left; }
+        .item-name { font-size: 16px; font-weight: 900; }
+        .btn {
+            border: none;
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-weight: 900;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: 0.2s;
+        }
+        .btn-blue { background: var(--accent); color: #fff; }
+        .btn-yellow { background: var(--gold); color: #000; }
+        .btn-red { background: var(--red); color: #fff; }
+        .btn:active { transform: scale(0.9); }
     </style>
 </head>
 <body>
     <div class="header">🦅 KUZI SHOP</div>
 
-    <div class="card" style="border-color: #ff4747;">
-        <div>1 ГЕМ 🔥</div>
-        <button class="btn btn-red" onclick="buy('SALE_1GEM_1')">1 ₽</button>
+    <div class="category-title">АКЦИИ 🔥</div>
+    <div class="card" style="border: 1px dashed var(--red);">
+        <div class="item-info">
+            <div class="item-name">1 ГЕМ</div>
+            <div style="font-size: 10px; color: var(--red);">СПЕЦПРЕДЛОЖЕНИЕ</div>
+        </div>
+        <button class="btn btn-red" onclick="order('SALE_1GEM_1')">1 ₽</button>
     </div>
 
+    <div class="category-title">BRAWL PASS 🎫</div>
     <div class="card">
-        <div>Brawl Pass 🎫</div>
-        <button class="btn btn-yellow" onclick="buy('PASS_STANDARD_999')">999 ₽</button>
+        <div class="item-info">
+            <div class="item-name">BP STANDARD</div>
+        </div>
+        <button class="btn btn-yellow" onclick="order('PASS_ST_999')">999 ₽</button>
     </div>
 
-    <div class="card"><div>30 ГЕМОВ 💎</div><button class="btn btn-blue" onclick="buy('GEMS_30_199')">199 ₽</button></div>
-    <div class="card"><div>80 ГЕМОВ 💎</div><button class="btn btn-blue" onclick="buy('GEMS_80_449')">449 ₽</button></div>
-    <div class="card"><div>170 ГЕМОВ 💎</div><button class="btn btn-blue" onclick="buy('GEMS_170_899')">899 ₽</button></div>
+    <div class="category-title">КРИСТАЛЛЫ 💎</div>
+    <div class="card">
+        <div class="item-info"><div class="item-name">30 ГЕМОВ</div></div>
+        <button class="btn btn-blue" onclick="order('GEMS_30_199')">199 ₽</button>
+    </div>
+    <div class="card">
+        <div class="item-info"><div class="item-name">80 ГЕМОВ</div></div>
+        <button class="btn btn-blue" onclick="order('GEMS_80_449')">449 ₽</button>
+    </div>
+    <div class="card">
+        <div class="item-info"><div class="item-name">170 ГЕМОВ</div></div>
+        <button class="btn btn-blue" onclick="order('GEMS_170_899')">899 ₽</button>
+    </div>
 
     <script>
         const tg = window.Telegram.WebApp;
         tg.ready();
+        tg.expand();
 
-        function buy(params) {
-            // Чтобы не было бесячих сообщений "Вы передали данные", 
-            // мы просто переходим по ссылке самого бота с параметром заказа
-            const botUsername = "ТВОЙ_ЮЗЕРНЕЙМ_БОТА"; // Например KuziShop_bot (БЕЗ @)
-            const link = `https://t.me/${botUsername}?start=buy_${params}`;
+        function order(params) {
+            // Укажи тут юзернейм своего бота БЕЗ @
+            const botUser = "ТВОЙ_ЮЗЕРНЕЙМ_БОТА"; 
+            const link = `https://t.me/${botUser}?start=buy_${params}`;
+            
+            // Виброотклик
+            if (tg.HapticFeedback) tg.HapticFeedback.impactOccurred('heavy');
+            
+            // Переход по ссылке, который заменяет sendData и убирает лишние сообщения
             tg.openTelegramLink(link);
             tg.close();
         }
