@@ -84,4 +84,67 @@
         }
 
         .btn-buy {
-            background: linear-gradient(180deg, #ffcb
+            background: linear-gradient(180deg, #ffcb05 0%, #c79a00 100%);
+            color: black;
+            border: none;
+            padding: 15px;
+            border-radius: 15px;
+            width: 100%;
+            font-size: 20px;
+            font-weight: 900;
+            text-transform: uppercase;
+            box-shadow: 0 5px 0 #8a6d00;
+            cursor: pointer;
+        }
+
+        .btn-buy:active { box-shadow: none; transform: translateY(4px); }
+
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>BRAWL SHOP</h1>
+        <div style="font-weight: 900; font-style: italic;">BY WAYTRIPP</div>
+    </div>
+
+    <div class="container">
+        <div class="card promo">
+            <div class="badge">Акция</div>
+            <img src="https://cdn-icons-png.flaticon.com/512/3233/3233480.png" class="gem-img">
+            <div class="title">ТЕСТОВЫЙ ПАК</div>
+            <div class="price">1₽</div>
+            <button class="btn-buy" onclick="buy('TEST-GEM', '1')">ЗАБРАТЬ</button>
+        </div>
+
+        <div class="card">
+            <img src="https://cdn-icons-png.flaticon.com/512/3233/3233480.png" class="gem-img">
+            <div class="title">30 ГЕМОВ</div>
+            <div class="price">199₽</div>
+            <button class="btn-buy" onclick="buy('30', '199')">КУПИТЬ</button>
+        </div>
+
+        <div class="card">
+            <img src="https://cdn-icons-png.flaticon.com/512/3233/3233480.png" class="gem-img">
+            <div class="title">80 ГЕМОВ</div>
+            <div class="price">449₽</div>
+            <button class="btn-buy" onclick="buy('80', '449')">КУПИТЬ</button>
+        </div>
+    </div>
+
+    <script>
+        let tg = window.Telegram.WebApp;
+        tg.expand();
+        tg.headerColor = '#ed1c24';
+
+        const BOT_USERNAME = "brawlstarssellerbot"; 
+
+        function buy(gems, price) {
+            tg.HapticFeedback.notificationOccurred('success');
+            const link = `https://t.me/${BOT_USERNAME}?start=buy_${gems}_${price}`;
+            tg.openTelegramLink(link);
+            tg.close();
+        }
+    </script>
+</body>
+</html>
