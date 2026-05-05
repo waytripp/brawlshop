@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>KUZI SHOP | OFFICIAL</title>
+    <title>KUZI SHOP</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
@@ -18,14 +18,14 @@
             overflow-x: hidden;
         }
 
-        .container { padding: 20px; max-width: 500px; margin: auto; }
+        .container { padding: 15px; max-width: 500px; margin: auto; }
 
-        /* ОФИЦИАЛЬНЫЙ БАННЕР BRAWL PASS */
+        /* БАННЕР BRAWL PASS */
         .bp-banner {
             width: 100%;
             height: 200px;
-            background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%), 
-                        url('https://images.wallpapersden.com/image/download/brawl-stars-2024-art_bWlqZ2mUmZqaraWkpJRma2ltrWdnZ20.jpg');
+            background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.9) 100%), 
+                        url('https://i.ytimg.com/vi/H7u0-f7rJMo/maxresdefault.jpg');
             background-size: cover;
             background-position: center;
             border-radius: 25px;
@@ -36,65 +36,60 @@
             padding: 20px;
             box-sizing: border-box;
             box-shadow: 0 10px 30px rgba(255, 204, 0, 0.3);
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
 
-        .bp-logo {
-            width: 140px; /* Логотип Brawl Pass */
-            margin-bottom: 10px;
-        }
+        .banner-title { font-size: 24px; margin-bottom: 10px; text-transform: uppercase; }
+        .banner-title span { color: #ffcc00; }
 
         .buy-btn {
             background: #ffcc00;
             color: #000;
             border: none;
-            padding: 12px 25px;
-            border-radius: 12px;
+            padding: 12px 30px;
+            border-radius: 14px;
             font-weight: 900;
             text-transform: uppercase;
             box-shadow: 0 5px 0 #b38f00;
-            cursor: pointer;
             width: fit-content;
         }
 
-        /* СЕТКА С ГЕМАМИ */
-        .shop-title { font-size: 20px; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
-
+        /* КАРТОЧКИ ТОВАРОВ */
         .grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
+            gap: 12px;
         }
 
         .item-card {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 20px 10px;
+            backdrop-filter: blur(15px);
+            border-radius: 22px;
+            padding: 15px 10px;
             text-align: center;
-            transition: 0.2s;
+            position: relative;
+            overflow: hidden;
         }
 
         .item-card:active { transform: scale(0.95); background: rgba(255, 255, 255, 0.1); }
 
-        /* ИКОНКИ ГЕМОВ */
         .gem-img {
-            width: 80px;
-            height: 80px;
-            object-fit: contain;
+            width: 85%;
+            max-width: 90px;
             margin-bottom: 10px;
-            filter: drop-shadow(0 5px 15px rgba(0, 255, 150, 0.3));
+            filter: drop-shadow(0 5px 15px rgba(0, 255, 150, 0.4));
         }
 
-        .gem-count { font-weight: 900; font-size: 16px; margin-bottom: 10px; color: #eee; }
+        .gem-count { font-weight: 900; font-size: 15px; margin-bottom: 12px; color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
 
-        .price-box {
+        .price-tag {
             background: #0085ff;
             color: #fff;
-            padding: 8px 0;
-            border-radius: 10px;
+            padding: 10px;
+            border-radius: 14px;
             font-weight: 900;
+            font-size: 16px;
             box-shadow: 0 4px 15px rgba(0, 133, 255, 0.4);
         }
     </style>
@@ -102,41 +97,36 @@
 <body>
 
 <div class="container">
-    <!-- Секция Brawl Pass -->
     <div class="bp-banner">
-        <img src="https://vignette.wikia.nocookie.net/brawlstars/images/0/02/Brawl_Pass_Logo.png/revision/latest?cb=20200505193910" class="bp-logo">
-        <button class="buy-btn" onclick="buy('BRAWL_PASS', '699')">КУПИТЬ ❯</button>
+        <div class="banner-title">BRAWL PASS<br><span>PLUS</span></div>
+        <button class="buy-btn" onclick="buy('PASS_PLUS', '990')">ЗАБРАТЬ ❯</button>
     </div>
 
-    <div class="shop-title">Кристаллы</div>
+    <div style="font-size: 18px; margin-bottom: 15px; font-weight: 900; text-transform: uppercase;">Кристаллы</div>
 
     <div class="grid">
-        <!-- 30 Гемов -->
         <div class="item-card" onclick="buy('GEMS_30', '199')">
-            <img src="https://brawlstars.pro/wp-content/uploads/2021/01/30_Gems.png" class="gem-img">
+            <img src="https://static.wikia.nocookie.net/brawlstars/images/0/0e/Gem_Icon.png" class="gem-img">
             <div class="gem-count">30 ГЕМОВ</div>
-            <div class="price-box">199 ₽</div>
+            <div class="price-tag">199 ₽</div>
         </div>
 
-        <!-- 80 Гемов -->
         <div class="item-card" onclick="buy('GEMS_80', '449')">
-            <img src="https://brawlstars.pro/wp-content/uploads/2021/01/80_Gems.png" class="gem-img">
+            <img src="https://static.wikia.nocookie.net/brawlstars/images/0/0e/Gem_Icon.png" class="gem-img">
             <div class="gem-count">80 ГЕМОВ</div>
-            <div class="price-box">449 ₽</div>
+            <div class="price-tag">449 ₽</div>
         </div>
 
-        <!-- 170 Гемов -->
         <div class="item-card" onclick="buy('GEMS_170', '899')">
-            <img src="https://brawlstars.pro/wp-content/uploads/2021/01/170_Gems.png" class="gem-img">
+            <img src="https://static.wikia.nocookie.net/brawlstars/images/0/0e/Gem_Icon.png" class="gem-img">
             <div class="gem-count">170 ГЕМОВ</div>
-            <div class="price-box">899 ₽</div>
+            <div class="price-tag">899 ₽</div>
         </div>
 
-        <!-- 360 Гемов -->
         <div class="item-card" onclick="buy('GEMS_360', '1790')">
-            <img src="https://brawlstars.pro/wp-content/uploads/2021/01/360_Gems.png" class="gem-img">
+            <img src="https://static.wikia.nocookie.net/brawlstars/images/0/0e/Gem_Icon.png" class="gem-img">
             <div class="gem-count">360 ГЕМОВ</div>
-            <div class="price-box">1790 ₽</div>
+            <div class="price-tag">1790 ₽</div>
         </div>
     </div>
 </div>
@@ -148,7 +138,6 @@
 
     function buy(id, price) {
         tg.HapticFeedback.impactOccurred('rigid');
-        // Ссылка на твоего бота (убедись, что юзернейм правильный)
         window.location.href = `https://t.me/brawlstarssellerbot?start=buy_${id}_${price}`;
     }
 </script>
