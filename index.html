@@ -34,16 +34,17 @@
         let tg = window.Telegram.WebApp;
         tg.expand();
 
+        // ⚠️ ВАЖНО: ВПИШИ СЮДА ЮЗЕРНЕЙМ СВОЕГО БОТА БЕЗ @
+        // Например: "brawlstarssellerbot"
+        const BOT_USERNAME = "ВСТАВЬ_ЮЗЕРНЕЙМ_СЮДА"; 
+
         function buy(gems, price) {
-            const data = `buy_${gems}_${price}`;
+            // Формируем скрытую команду для бота
+            const command = `buy_${gems}_${price}`;
             
-            // Пытаемся отправить данные боту
-            if (tg.sendData) {
-                tg.sendData(data);
-                tg.close();
-            } else {
-                alert("Ошибка: Открой магазин через кнопку 'МЕНЮ' или перезапусти бота.");
-            }
+            // Эта функция обойдет блокировку Телеграма! 
+            // Она закроет окно и сама нажмет /start с нужным товаром
+            tg.openTelegramLink(`https://t.me/${BOT_USERNAME}?start=${command}`);
         }
     </script>
 </body>
