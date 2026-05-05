@@ -3,40 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop</title>
+    <title>Test Shop</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
-        body { font-family: sans-serif; background: #121212; color: white; text-align: center; padding: 20px; }
-        .btn { background: #0088cc; color: white; border: none; padding: 20px; border-radius: 10px; width: 100%; font-size: 20px; margin-bottom: 10px; cursor: pointer; }
+        body { font-family: sans-serif; background: #1a1a1a; color: white; text-align: center; padding: 50px 20px; }
+        .btn { background: #0088cc; color: white; border: none; padding: 20px; border-radius: 12px; width: 100%; font-size: 20px; font-weight: bold; cursor: pointer; margin-top: 20px; }
     </style>
 </head>
 <body>
-    <h2>МАГАЗИН ГЕМОВ</h2>
-    <button class="btn" onclick="buy('30', '199')">30 ГЕМОВ - 199₽</button>
-    <button class="btn" onclick="buy('80', '449')">80 ГЕМОВ - 449₽</button>
+    <h2>ПРОВЕРКА МАГАЗИНА</h2>
+    <p>Если кнопки не нажимаются — значит телеграм показывает старую версию сайта.</p>
+    
+    <button class="btn" onclick="testBuy('30', '199')">КУПИТЬ 30 ГЕМОВ</button>
 
     <script>
         let tg = window.Telegram.WebApp;
         tg.expand();
 
-        // ОБЯЗАТЕЛЬНО ВПИШИ ЛОГИН БОТА НИЖЕ (БЕЗ @)
+        // ОБЯЗАТЕЛЬНО ЗАМЕНИ ЭТОТ ТЕКСТ:
         const BOT_USERNAME = "brawlstarssellerbot"; 
 
-        function buy(gems, price) {
-            console.log("Кнопка нажата");
-            if (BOT_USERNAME === "@rawlstarssellerbot") {
-                alert("Ошибка: Ты не вписал логин бота в HTML!");
-                return;
-            }
+        function testBuy(gems, price) {
+            // Если ты видишь это сообщение при нажатии — значит кнопки ОЖИЛИ
+            alert("Кнопка сработала! Сейчас переброшу в бота: " + BOT_USERNAME);
             
             const link = `https://t.me/${BOT_USERNAME}?start=buy_${gems}_${price}`;
             
-            // Пытаемся перейти
             try {
                 tg.openTelegramLink(link);
                 tg.close();
             } catch (e) {
-                alert("Ошибка перехода: " + e.message);
+                alert("Ошибка ссылки: " + e.message);
             }
         }
     </script>
