@@ -44,11 +44,12 @@
         // ⚠️ ЗАМЕНИ НА СВОЙ ЮЗЕРНЕЙМ БЕЗ @ (например: "my_brawl_bot")
         const BOT_USERNAME = "brawlstarssellerbot"; 
 
-        function buy(gems, price) {
-            if (BOT_USERNAME === "brawlstarssellerbot") {
-                alert("Ошибка: Впиши юзернейм бота в HTML коде!");
-                return;
-            }
+function buy(gems, price) {
+    alert("Нажал на " + gems + " гемов. Перехожу к боту: " + BOT_USERNAME);
+    const command = `buy_${gems}_${price}`;
+    const link = `https://t.me/${BOT_USERNAME}?start=${command}`;
+    tg.openTelegramLink(link);
+}
             const command = `buy_${gems}_${price}`;
             const link = `https://t.me/${BOT_USERNAME}?start=${command}`;
             tg.openTelegramLink(link);
