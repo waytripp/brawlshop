@@ -2,39 +2,78 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Shop</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Elite Shop</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
-        body { font-family: sans-serif; background: #1a1a1a; color: white; text-align: center; padding: 50px 20px; }
-        .btn { background: #0088cc; color: white; border: none; padding: 20px; border-radius: 12px; width: 100%; font-size: 20px; font-weight: bold; cursor: pointer; margin-top: 20px; }
+        :root { --yellow: #ffcb05; --blue: #0088cc; --dark: #121212; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: var(--dark); color: white; margin: 0; padding: 15px; }
+        
+        .header { background: linear-gradient(135deg, #1a1a1a, #000); padding: 25px 15px; border-radius: 20px; margin-bottom: 20px; border-bottom: 4px solid var(--yellow); text-align: center; }
+        .header h1 { margin: 0; font-size: 24px; color: var(--yellow); text-transform: uppercase; }
+        
+        .container { display: grid; gap: 15px; }
+        
+        .card { background: #1e1e1e; border-radius: 18px; padding: 20px; border: 1px solid #333; text-align: center; transition: 0.2s; }
+        .card:active { transform: scale(0.96); border-color: var(--yellow); }
+        
+        .gem-icon { width: 80px; margin-bottom: 10px; filter: drop-shadow(0 0 10px rgba(255,203,5,0.4)); }
+        .gem-title { font-size: 22px; font-weight: bold; margin-bottom: 5px; }
+        .price-tag { color: #00ff66; font-size: 26px; font-weight: bold; margin-bottom: 15px; }
+        
+        .buy-button { 
+            background: linear-gradient(180deg, #00b4ff 0%, #0077ff 100%); 
+            color: white; border: none; padding: 15px; border-radius: 12px; 
+            width: 100%; font-size: 18px; font-weight: bold; text-transform: uppercase;
+            box-shadow: 0 4px 0 #0055aa; cursor: pointer;
+        }
+        .buy-button:active { box-shadow: none; transform: translateY(4px); }
     </style>
 </head>
 <body>
-    <h2>ПРОВЕРКА МАГАЗИНА</h2>
-    <p>Если кнопки не нажимаются — значит телеграм показывает старую версию сайта.</p>
-    
-    <button class="btn" onclick="testBuy('30', '199')">КУПИТЬ 30 ГЕМОВ</button>
+
+    <div class="header">
+        <h1>🦅 Elite Shop</h1>
+        <p style="margin: 5px 0 0; opacity: 0.7;">Brawl Stars Gems Store</p>
+    </div>
+
+    <div class="container">
+        <!-- 30 ГЕМОВ -->
+        <div class="card">
+            <img src="https://cdn-icons-png.flaticon.com/512/3233/3233480.png" class="gem-icon">
+            <div class="gem-title">30 Гемов</div>
+            <div class="price-tag">199₽</div>
+            <button class="buy-button" onclick="confirmBuy('30', '199')">Купить</button>
+        </div>
+
+        <!-- 80 ГЕМОВ -->
+        <div class="card">
+            <img src="https://cdn-icons-png.flaticon.com/512/3233/3233480.png" class="gem-icon">
+            <div class="gem-title">80 Гемов</div>
+            <div class="price-tag">449₽</div>
+            <button class="buy-button" onclick="confirmBuy('80', '449')">Купить</button>
+        </div>
+
+        <!-- 170 ГЕМОВ -->
+        <div class="card">
+            <img src="https://cdn-icons-png.flaticon.com/512/3233/3233480.png" class="gem-icon">
+            <div class="gem-title">170 Гемов</div>
+            <div class="price-tag">899₽</div>
+            <button class="buy-button" onclick="confirmBuy('170', '899')">Купить</button>
+        </div>
+    </div>
 
     <script>
         let tg = window.Telegram.WebApp;
         tg.expand();
 
-        // ОБЯЗАТЕЛЬНО ЗАМЕНИ ЭТОТ ТЕКСТ:
         const BOT_USERNAME = "brawlstarssellerbot"; 
 
-        function testBuy(gems, price) {
-            // Если ты видишь это сообщение при нажатии — значит кнопки ОЖИЛИ
-            alert("Кнопка сработала! Сейчас переброшу в бота: " + BOT_USERNAME);
-            
+        function confirmBuy(gems, price) {
+            tg.HapticFeedback.impactOccurred('heavy');
             const link = `https://t.me/${BOT_USERNAME}?start=buy_${gems}_${price}`;
-            
-            try {
-                tg.openTelegramLink(link);
-                tg.close();
-            } catch (e) {
-                alert("Ошибка ссылки: " + e.message);
-            }
+            tg.openTelegramLink(link);
+            tg.close();
         }
     </script>
 </body>
