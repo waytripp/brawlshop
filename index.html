@@ -10,33 +10,26 @@
         :root { --glass: rgba(255, 255, 255, 0.03); --glass-border: rgba(255, 255, 255, 0.1); --accent-yellow: #facc15; --accent-blue: #00d2ff; --accent-red: #ff4747; }
         body { background: #000; color: white; font-family: 'Montserrat', sans-serif; margin: 0; padding: 20px; text-align: center; }
         .header { font-size: 26px; text-transform: uppercase; margin-bottom: 25px; }
-        
-        /* АКЦИЯ */
         .sale-card { background: linear-gradient(135deg, rgba(255, 71, 71, 0.1), rgba(0,0,0,0.5)); border: 2px dashed var(--accent-red); border-radius: 20px; padding: 15px; margin-bottom: 20px; }
-        
         .brawl-pass { background: rgba(250, 204, 21, 0.05); backdrop-filter: blur(15px); border: 1px solid var(--accent-yellow); border-radius: 24px; padding: 20px; margin-bottom: 25px; }
         .bp-title { font-family: 'Oswald', sans-serif; font-size: 22px; color: var(--accent-yellow); text-transform: uppercase; margin-bottom: 15px; }
-        
         .gems-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
         .gem-card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 18px; padding: 15px; }
-        
         .btn { width: 100%; border: none; padding: 10px; border-radius: 10px; font-weight: 900; text-transform: uppercase; cursor: pointer; transition: 0.2s; }
         .btn-yellow { background: var(--accent-yellow); color: #000; }
         .btn-blue { background: var(--accent-blue); color: #fff; }
         .btn-red { background: var(--accent-red); color: #fff; }
         .btn:active { transform: scale(0.95); }
-        
         h2 { text-align: left; font-size: 14px; color: var(--accent-blue); margin: 20px 0 10px 5px; }
     </style>
 </head>
 <body>
     <div class="header">🦅 KUZI SHOP</div>
 
-    <!-- ТЕСТОВАЯ АКЦИЯ -->
     <div class="sale-card">
         <div style="color: var(--accent-red); font-weight: bold; margin-bottom: 10px;">🔥 ТЕСТОВАЯ АКЦИЯ</div>
         <div style="font-size: 18px; margin-bottom: 10px;">1 ГЕМ</div>
-        <button class="btn btn-red" onclick="buy('SALE', '1 ГЕМ', 1)">КУПИТЬ — 1₽</button>
+        <button class="btn btn-red" onclick="buy('SALE', '1GEM', 1)">КУПИТЬ — 1₽</button>
     </div>
 
     <div class="brawl-pass">
@@ -58,8 +51,10 @@
         tg.expand();
         tg.setHeaderColor('#000000');
         function buy(type, amount, price) {
+            // Передаем данные в бот
             let bot_link = `https://t.me/brawlstarssellerbot?start=buy_${type}_${amount}_${price}`;
             tg.openTelegramLink(bot_link);
+            tg.close();
         }
     </script>
 </body>
