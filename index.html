@@ -10,16 +10,20 @@
         :root { --glass: rgba(255, 255, 255, 0.05); --glass-border: rgba(255, 255, 255, 0.1); --accent-yellow: #facc15; --accent-blue: #00d2ff; --accent-red: #ff4747; }
         body { background: #000; color: white; font-family: 'Montserrat', sans-serif; margin: 0; padding: 20px; text-align: center; -webkit-tap-highlight-color: transparent; }
         .header { font-size: 26px; text-transform: uppercase; margin-bottom: 25px; font-weight: 900; }
+        
         .sale-card { background: linear-gradient(135deg, rgba(255, 71, 71, 0.2), rgba(0,0,0,0.5)); border: 2px dashed var(--accent-red); border-radius: 20px; padding: 15px; margin-bottom: 20px; }
         .brawl-pass { background: rgba(250, 204, 21, 0.1); border: 1px solid var(--accent-yellow); border-radius: 24px; padding: 20px; margin-bottom: 25px; }
         .bp-title { font-family: 'Oswald', sans-serif; font-size: 22px; color: var(--accent-yellow); text-transform: uppercase; margin-bottom: 15px; }
+        
         .gems-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
         .gem-card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 18px; padding: 15px; }
+        
         .btn { width: 100%; border: none; padding: 12px; border-radius: 12px; font-weight: 900; text-transform: uppercase; cursor: pointer; transition: 0.2s; font-size: 14px; color: #fff; }
         .btn-yellow { background: var(--accent-yellow); color: #000; }
         .btn-blue { background: var(--accent-blue); }
         .btn-red { background: var(--accent-red); }
         .btn:active { transform: scale(0.95); opacity: 0.8; }
+        
         h2 { text-align: left; font-size: 14px; color: var(--accent-blue); margin: 20px 0 10px 5px; text-transform: uppercase; }
     </style>
 </head>
@@ -48,20 +52,14 @@
 
     <script>
         const tg = window.Telegram.WebApp;
+        tg.ready(); // Говорим телеге, что аппка загрузилась
         tg.expand();
 
         function buy(type, amount, price) {
-            try {
-                const url = `https://t.me/brawlstarssellerbot?start=buy_${type}_${amount}_${price}`;
-                // Открываем ссылку
-                tg.openTelegramLink(url);
-                // Закрываем приложение с задержкой, чтобы ссылка успела сработать
-                setTimeout(() => {
-                    tg.close();
-                }, 300);
-            } catch (e) {
-                alert("Ошибка при переходе: " + e);
-            }
+            const bot_link = `https://t.me/brawlstarssellerbot?start=buy_${type}_${amount}_${price}`;
+            
+            // Просто открываем ссылку, Телега сама скроет WebApp и откроет чат
+            tg.openTelegramLink(bot_link);
         }
     </script>
 </body>
