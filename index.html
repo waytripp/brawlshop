@@ -3,147 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ELITE BRAWL SHOP</title>
+    <title>KUZI SHOP</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Roboto:wght@900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
 
         :root {
-            --accent: #ffcb05; /* Золотой Brawl Stars */
-            --bg: #0f172a;
-            --card-bg: #1e293b;
+            --gold: #ffcb05;
+            --blue: #00d2ff;
+            --dark-bg: #0b0e14;
+            --card-bg: #161b22;
         }
 
         body {
-            font-family: 'Roboto', sans-serif;
-            background: var(--bg);
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--dark-bg);
             color: white;
             margin: 0;
             padding: 15px;
             text-align: center;
-            user-select: none;
         }
 
-        .header {
-            background: linear-gradient(180deg, #ed1c24 0%, #aa0000 100%);
-            padding: 25px 10px;
-            border-radius: 0 0 30px 30px;
-            margin: -15px -15px 25px -15px;
-            border-bottom: 5px solid var(--accent);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        .brand-header {
+            background: linear-gradient(180deg, #1e293b 0%, #000 100%);
+            padding: 30px 10px;
+            border-radius: 25px;
+            margin-bottom: 25px;
+            border: 2px solid var(--gold);
+            box-shadow: 0 0 20px rgba(255, 203, 5, 0.2);
         }
 
-        .header h1 {
-            font-family: 'Black Ops One', cursive;
-            font-size: 32px;
+        .brand-header h1 {
+            font-size: 36px;
             margin: 0;
-            text-shadow: 3px 3px 0px #000;
-            letter-spacing: 2px;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            text-shadow: 0 0 15px rgba(255, 203, 5, 0.5);
         }
 
-        .container { display: grid; gap: 15px; padding-bottom: 30px; }
+        .container { display: grid; gap: 15px; }
 
-        /* Стиль карточки как у Холдика */
         .card {
             background: var(--card-bg);
             border-radius: 20px;
-            padding: 15px;
-            border: 3px solid #334155;
+            padding: 20px;
+            border: 1px solid #30363d;
+            transition: 0.3s;
             position: relative;
-            overflow: hidden;
-            transition: 0.2s;
         }
 
-        .card.promo { border-color: var(--accent); background: linear-gradient(135deg, #1e293b, #334155); }
+        .card:active { transform: scale(0.97); border-color: var(--gold); }
 
-        .card:active { transform: scale(0.95); }
+        .card.promo {
+            border: 2px solid #00ff66;
+            background: linear-gradient(145deg, #161b22, #0d2d1b);
+        }
 
-        .badge {
-            background: var(--accent);
-            color: black;
-            font-weight: 900;
-            padding: 5px 15px;
-            border-radius: 10px;
+        .promo-badge {
             position: absolute;
             top: 10px;
-            right: 10px;
-            font-size: 12px;
+            left: 10px;
+            background: #00ff66;
+            color: black;
+            font-size: 10px;
+            padding: 4px 8px;
+            border-radius: 8px;
             text-transform: uppercase;
         }
 
-        .gem-img { width: 90px; filter: drop-shadow(0 0 10px rgba(0,255,255,0.5)); }
+        .gem-img { width: 85px; margin-bottom: 10px; }
         
-        .title { font-size: 24px; font-weight: 900; margin: 10px 0; text-transform: uppercase; font-style: italic; }
+        .item-name { font-size: 22px; margin-bottom: 5px; color: #fff; }
         
-        .price {
-            font-size: 28px;
-            font-weight: 900;
-            color: #4ade80;
-            text-shadow: 2px 2px 0px #000;
-            margin-bottom: 15px;
-        }
+        .item-price { font-size: 28px; color: var(--gold); margin-bottom: 15px; }
 
-        .btn-buy {
-            background: linear-gradient(180deg, #ffcb05 0%, #c79a00 100%);
+        .buy-btn {
+            background: linear-gradient(90deg, #ffcb05 0%, #f7931e 100%);
             color: black;
             border: none;
-            padding: 15px;
-            border-radius: 15px;
+            padding: 16px;
+            border-radius: 14px;
             width: 100%;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 900;
             text-transform: uppercase;
-            box-shadow: 0 5px 0 #8a6d00;
             cursor: pointer;
+            box-shadow: 0 4px 15px rgba(247, 147, 30, 0.3);
         }
-
-        .btn-buy:active { box-shadow: none; transform: translateY(4px); }
-
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <h1>BRAWL SHOP</h1>
-        <div style="font-weight: 900; font-style: italic;">BY WAYTRIPP</div>
+    <div class="brand-header">
+        <h1>KUZI SHOP</h1>
+        <div style="font-size: 12px; color: #8b949e; letter-spacing: 2px; margin-top: 5px;">PREMIUM BRAWL STORE</div>
     </div>
 
     <div class="container">
         <div class="card promo">
-            <div class="badge">Акция</div>
+            <div class="promo-badge">Тест системы</div>
             <img src="https://cdn-icons-png.flaticon.com/512/3233/3233480.png" class="gem-img">
-            <div class="title">ТЕСТОВЫЙ ПАК</div>
-            <div class="price">1₽</div>
-            <button class="btn-buy" onclick="buy('TEST-GEM', '1')">ЗАБРАТЬ</button>
+            <div class="item-name">30 ГЕМОВ</div>
+            <div class="item-price">1₽</div>
+            <button class="buy-btn" onclick="order('30_TEST', '1')">ПРОВЕРИТЬ</button>
         </div>
 
         <div class="card">
             <img src="https://cdn-icons-png.flaticon.com/512/3233/3233480.png" class="gem-img">
-            <div class="title">30 ГЕМОВ</div>
-            <div class="price">199₽</div>
-            <button class="btn-buy" onclick="buy('30', '199')">КУПИТЬ</button>
+            <div class="item-name">80 ГЕМОВ</div>
+            <div class="item-price">449₽</div>
+            <button class="buy-btn" onclick="order('80', '449')">КУПИТЬ</button>
         </div>
 
         <div class="card">
             <img src="https://cdn-icons-png.flaticon.com/512/3233/3233480.png" class="gem-img">
-            <div class="title">80 ГЕМОВ</div>
-            <div class="price">449₽</div>
-            <button class="btn-buy" onclick="buy('80', '449')">КУПИТЬ</button>
+            <div class="item-name">170 ГЕМОВ</div>
+            <div class="item-price">899₽</div>
+            <button class="buy-btn" onclick="order('170', '899')">КУПИТЬ</button>
         </div>
     </div>
 
     <script>
         let tg = window.Telegram.WebApp;
         tg.expand();
-        tg.headerColor = '#ed1c24';
 
-        const BOT_USERNAME = "brawlstarssellerbot"; 
-
-        function buy(gems, price) {
+        function order(id, price) {
             tg.HapticFeedback.notificationOccurred('success');
-            const link = `https://t.me/${BOT_USERNAME}?start=buy_${gems}_${price}`;
-            tg.openTelegramLink(link);
-            tg.close();
+            // Укажи здесь свой логин БЕЗ @
+            const bot_user = "brawlstarssellerbot"; 
+            window.location.href = `https://t.me/${bot_user}?start=buy_${id}_${price}`;
         }
     </script>
 </body>
