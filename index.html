@@ -5,100 +5,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>KUZI SHOP</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Oswald:wght@700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg: #000000;
-            --accent: #00d2ff;
-            --gold: #facc15;
-            --red: #ff4747;
-            --card-bg: rgba(255, 255, 255, 0.07);
+        :root { --glass: rgba(255, 255, 255, 0.05); --glass-border: rgba(255, 255, 255, 0.1); --accent-yellow: #facc15; --accent-blue: #00d2ff; --accent-red: #ff4747; }
+        body { background: #000; color: white; font-family: 'Montserrat', sans-serif; margin: 0; padding: 20px; text-align: center; overflow-x: hidden; }
+        .header { font-size: 26px; text-transform: uppercase; margin-bottom: 25px; font-weight: 900; letter-spacing: 1px; }
+        
+        /* АКЦИЯ */
+        .sale-card { 
+            background: linear-gradient(135deg, rgba(255, 71, 71, 0.2), rgba(0,0,0,0.5)); 
+            border: 2px dashed var(--accent-red); 
+            border-radius: 20px; padding: 15px; margin-bottom: 20px;
+            animation: pulse 2s infinite;
         }
-        body {
-            background: var(--bg);
-            color: #fff;
-            font-family: 'Montserrat', sans-serif;
-            margin: 0;
-            padding: 20px;
-            text-align: center;
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 71, 71, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 71, 71, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 71, 71, 0); }
         }
-        .header { font-size: 26px; margin-bottom: 25px; font-weight: 900; letter-spacing: 1px; }
-        .category-title { text-align: left; font-size: 14px; color: var(--accent); margin: 20px 0 10px 5px; text-transform: uppercase; }
-        .card {
-            background: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 18px;
-            padding: 20px;
-            margin-bottom: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+
+        /* BRAWL PASS */
+        .brawl-pass { 
+            background: rgba(250, 204, 21, 0.1); 
+            backdrop-filter: blur(10px); 
+            border: 1px solid var(--accent-yellow); 
+            border-radius: 24px; padding: 20px; margin-bottom: 25px; 
         }
-        .item-info { text-align: left; }
-        .item-name { font-size: 16px; font-weight: 900; }
-        .btn {
-            border: none;
-            padding: 10px 20px;
-            border-radius: 12px;
-            font-weight: 900;
-            cursor: pointer;
-            text-transform: uppercase;
-            transition: 0.2s;
-        }
-        .btn-blue { background: var(--accent); color: #fff; }
-        .btn-yellow { background: var(--gold); color: #000; }
-        .btn-red { background: var(--red); color: #fff; }
-        .btn:active { transform: scale(0.9); }
+        .bp-title { font-family: 'Oswald', sans-serif; font-size: 22px; color: var(--accent-yellow); text-transform: uppercase; margin-bottom: 15px; }
+        
+        /* СЕТКА ГЕМОВ */
+        h2 { text-align: left; font-size: 14px; color: var(--accent-blue); margin: 20px 0 10px 5px; text-transform: uppercase; }
+        .gems-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .gem-card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 18px; padding: 15px; }
+        
+        /* КНОПКИ */
+        .btn { width: 100%; border: none; padding: 12px; border-radius: 12px; font-weight: 900; text-transform: uppercase; cursor: pointer; transition: 0.1s; font-size: 14px; color: #fff; }
+        .btn-yellow { background: var(--accent-yellow); color: #000; }
+        .btn-blue { background: var(--accent-blue); }
+        .btn-red { background: var(--accent-red); }
+        .btn:active { transform: scale(0.95); }
+        .gem-name { font-size: 14px; font-weight: 700; margin-bottom: 10px; }
     </style>
 </head>
 <body>
     <div class="header">🦅 KUZI SHOP</div>
 
-    <div class="category-title">АКЦИИ 🔥</div>
-    <div class="card" style="border: 1px dashed var(--red);">
-        <div class="item-info">
-            <div class="item-name">1 ГЕМ</div>
-            <div style="font-size: 10px; color: var(--red);">СПЕЦПРЕДЛОЖЕНИЕ</div>
-        </div>
-        <button class="btn btn-red" onclick="order('SALE_1GEM_1')">1 ₽</button>
+    <div class="sale-card">
+        <div style="color: var(--accent-red); font-weight: bold; margin-bottom: 5px; font-size: 12px;">⚡️ FLASH SALE ⚡️</div>
+        <div style="font-size: 18px; margin-bottom: 10px; font-weight: 900;">1 ГЕМ</div>
+        <button class="btn btn-red" onclick="buy('SALE_1GEM_1')">ЗАБРАТЬ ЗА 1 ₽</button>
     </div>
 
-    <div class="category-title">BRAWL PASS 🎫</div>
-    <div class="card">
-        <div class="item-info">
-            <div class="item-name">BP STANDARD</div>
-        </div>
-        <button class="btn btn-yellow" onclick="order('PASS_ST_999')">999 ₽</button>
+    <div class="brawl-pass">
+        <div style="font-size: 40px; margin-bottom: 5px;">🎫</div>
+        <div class="bp-title">Brawl Pass Plus</div>
+        <button class="btn btn-yellow" onclick="buy('PASS_PLUS_999')">КУПИТЬ ЗА 999 ₽</button>
     </div>
 
-    <div class="category-title">КРИСТАЛЛЫ 💎</div>
-    <div class="card">
-        <div class="item-info"><div class="item-name">30 ГЕМОВ</div></div>
-        <button class="btn btn-blue" onclick="order('GEMS_30_199')">199 ₽</button>
-    </div>
-    <div class="card">
-        <div class="item-info"><div class="item-name">80 ГЕМОВ</div></div>
-        <button class="btn btn-blue" onclick="order('GEMS_80_449')">449 ₽</button>
-    </div>
-    <div class="card">
-        <div class="item-info"><div class="item-name">170 ГЕМОВ</div></div>
-        <button class="btn btn-blue" onclick="order('GEMS_170_899')">899 ₽</button>
+    <h2>Кристаллы 💎</h2>
+    <div class="gems-grid">
+        <div class="gem-card"><div class="gem-name">30 ГЕМОВ</div><button class="btn btn-blue" onclick="buy('GEMS_30_199')">199 ₽</button></div>
+        <div class="gem-card"><div class="gem-name">80 ГЕМОВ</div><button class="btn btn-blue" onclick="buy('GEMS_80_449')">449 ₽</button></div>
+        <div class="gem-card"><div class="gem-name">170 ГЕМОВ</div><button class="btn btn-blue" onclick="buy('GEMS_170_899')">899 ₽</button></div>
+        <div class="gem-card"><div class="gem-name">360 ГЕМОВ</div><button class="btn btn-blue" onclick="buy('GEMS_360_1790')">1790 ₽</button></div>
     </div>
 
     <script>
         const tg = window.Telegram.WebApp;
         tg.ready();
         tg.expand();
+        tg.setHeaderColor('#000000');
+        tg.setBackgroundColor('#000000');
 
-        function order(params) {
-            // Укажи тут юзернейм своего бота БЕЗ @
-            const botUser = "ТВОЙ_ЮЗЕРНЕЙМ_БОТА"; 
-            const link = `https://t.me/${botUser}?start=buy_${params}`;
-            
-            // Виброотклик
-            if (tg.HapticFeedback) tg.HapticFeedback.impactOccurred('heavy');
-            
-            // Переход по ссылке, который заменяет sendData и убирает лишние сообщения
+        function buy(params) {
+            // ВСТАВЬ СЮДА ЮЗЕРНЕЙМ БОТА БЕЗ @
+            const botNick = "ТВОЙ_ЮЗЕРНЕЙМ_БОТА"; 
+            const link = `https://t.me/${botNick}?start=buy_${params}`;
+            if (tg.HapticFeedback) tg.HapticFeedback.impactOccurred('medium');
             tg.openTelegramLink(link);
             tg.close();
         }
