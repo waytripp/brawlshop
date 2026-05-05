@@ -1,146 +1,110 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>KUZI SHOP</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
-
+        /* ОСНОВНОЙ СТИЛЬ */
         body {
-            font-family: 'Montserrat', sans-serif;
-            background: #0d0d0f;
-            background-image: radial-gradient(circle at 50% 0%, #1a2a6c, #0d0d0f);
-            color: #fff;
+            background-color: #0a0f1e;
+            color: white;
+            font-family: 'Arial', sans-serif;
             margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-        }
-
-        .container { padding: 15px; max-width: 500px; margin: auto; }
-
-        /* БАННЕР BRAWL PASS */
-        .bp-banner {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.9) 100%), 
-                        url('https://i.ytimg.com/vi/H7u0-f7rJMo/maxresdefault.jpg');
-            background-size: cover;
-            background-position: center;
-            border-radius: 25px;
-            border: 3px solid #ffcc00;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
             padding: 20px;
-            box-sizing: border-box;
-            box-shadow: 0 10px 30px rgba(255, 204, 0, 0.3);
-            margin-bottom: 25px;
-        }
-
-        .banner-title { font-size: 24px; margin-bottom: 10px; text-transform: uppercase; }
-        .banner-title span { color: #ffcc00; }
-
-        .buy-btn {
-            background: #ffcc00;
-            color: #000;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 14px;
-            font-weight: 900;
-            text-transform: uppercase;
-            box-shadow: 0 5px 0 #b38f00;
-            width: fit-content;
-        }
-
-        /* КАРТОЧКИ ТОВАРОВ */
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-        }
-
-        .item-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(15px);
-            border-radius: 22px;
-            padding: 15px 10px;
             text-align: center;
+        }
+
+        .header { font-weight: bold; font-size: 24px; margin-bottom: 20px; color: #fff; }
+
+        /* КАРТОЧКА BRAWL PASS */
+        .brawl-pass {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border: 2px solid #facc15;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 25px;
             position: relative;
             overflow: hidden;
         }
+        .bp-icon { font-size: 50px; margin-bottom: 10px; } /* Вместо битой картинки - эмодзи */
+        .bp-title { font-size: 22px; font-weight: 900; color: #facc15; margin-bottom: 15px; }
 
-        .item-card:active { transform: scale(0.95); background: rgba(255, 255, 255, 0.1); }
-
-        .gem-img {
-            width: 85%;
-            max-width: 90px;
-            margin-bottom: 10px;
-            filter: drop-shadow(0 5px 15px rgba(0, 255, 150, 0.4));
+        /* СЕТКА ГЕМОВ */
+        .gems-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
         }
+        .gem-card {
+            background: #161b2c;
+            border-radius: 15px;
+            padding: 15px;
+            border: 1px solid #2d3748;
+        }
+        .gem-amount { font-size: 16px; font-weight: bold; margin-bottom: 10px; }
 
-        .gem-count { font-weight: 900; font-size: 15px; margin-bottom: 12px; color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
-
-        .price-tag {
+        /* КНОПКИ */
+        .btn {
+            display: block;
             background: #0085ff;
-            color: #fff;
+            color: white;
+            text-decoration: none;
             padding: 10px;
-            border-radius: 14px;
-            font-weight: 900;
-            font-size: 16px;
-            box-shadow: 0 4px 15px rgba(0, 133, 255, 0.4);
+            border-radius: 10px;
+            font-weight: bold;
+            transition: 0.2s;
         }
+        .btn-bp { background: #facc15; color: black; font-size: 18px; }
+        .btn:active { transform: scale(0.95); }
+
+        h2 { text-align: left; font-size: 18px; margin-left: 5px; opacity: 0.8; }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <div class="bp-banner">
-        <div class="banner-title">BRAWL PASS<br><span>PLUS</span></div>
-        <button class="buy-btn" onclick="buy('PASS_PLUS', '990')">ЗАБРАТЬ ❯</button>
+    <div class="header">KUZI SHOP</div>
+
+    <!-- БЛОК BRAWL PASS -->
+    <div class="brawl-pass">
+        <div class="bp-icon">🎫</div>
+        <div class="bp-title">BRAWL PASS PLUS</div>
+        <a href="#" class="btn btn-bp" onclick="buy('PASS', 'PLUS', 999)">ЗАБРАТЬ — 999₽</a>
     </div>
 
-    <div style="font-size: 18px; margin-bottom: 15px; font-weight: 900; text-transform: uppercase;">Кристаллы</div>
+    <h2>КРИСТАЛЛЫ</h2>
 
-    <div class="grid">
-        <div class="item-card" onclick="buy('GEMS_30', '199')">
-            <img src="https://static.wikia.nocookie.net/brawlstars/images/0/0e/Gem_Icon.png" class="gem-img">
-            <div class="gem-count">30 ГЕМОВ</div>
-            <div class="price-tag">199 ₽</div>
+    <!-- СЕТКА ГЕМОВ (Без иконок) -->
+    <div class="gems-grid">
+        <div class="gem-card">
+            <div class="gem-amount">30 ГЕМОВ</div>
+            <a href="#" class="btn" onclick="buy('GEMS', '30', 199)">199 ₽</a>
         </div>
-
-        <div class="item-card" onclick="buy('GEMS_80', '449')">
-            <img src="https://static.wikia.nocookie.net/brawlstars/images/0/0e/Gem_Icon.png" class="gem-img">
-            <div class="gem-count">80 ГЕМОВ</div>
-            <div class="price-tag">449 ₽</div>
+        <div class="gem-card">
+            <div class="gem-amount">80 ГЕМОВ</div>
+            <a href="#" class="btn" onclick="buy('GEMS', '80', 449)">449 ₽</a>
         </div>
-
-        <div class="item-card" onclick="buy('GEMS_170', '899')">
-            <img src="https://static.wikia.nocookie.net/brawlstars/images/0/0e/Gem_Icon.png" class="gem-img">
-            <div class="gem-count">170 ГЕМОВ</div>
-            <div class="price-tag">899 ₽</div>
+        <div class="gem-card">
+            <div class="gem-amount">170 ГЕМОВ</div>
+            <a href="#" class="btn" onclick="buy('GEMS', '170', 899)">899 ₽</a>
         </div>
-
-        <div class="item-card" onclick="buy('GEMS_360', '1790')">
-            <img src="https://static.wikia.nocookie.net/brawlstars/images/0/0e/Gem_Icon.png" class="gem-img">
-            <div class="gem-count">360 ГЕМОВ</div>
-            <div class="price-tag">1790 ₽</div>
+        <div class="gem-card">
+            <div class="gem-amount">360 ГЕМОВ</div>
+            <a href="#" class="btn" onclick="buy('GEMS', '360', 1790)">1790 ₽</a>
         </div>
     </div>
-</div>
 
-<script>
-    let tg = window.Telegram.WebApp;
-    tg.expand();
-    tg.headerColor = '#0d0d0f';
+    <script>
+        let tg = window.Telegram.WebApp;
+        tg.expand(); // Развернуть на весь экран
 
-    function buy(id, price) {
-        tg.HapticFeedback.impactOccurred('rigid');
-        window.location.href = `https://t.me/brawlstarssellerbot?start=buy_${id}_${price}`;
-    }
-</script>
-
+        function buy(type, amount, price) {
+            // Формируем ссылку для бота, которую он поймет (твой @dp.message(Command("start")))
+            let bot_link = `https://t.me/ТВОЙ_ЮЗЕРНЕЙМ_БОТА?start=buy_${type}_${amount}_${price}`;
+            tg.openTelegramLink(bot_link);
+            tg.close(); // Закрываем веб-апп после клика
+        }
+    </script>
 </body>
 </html>
