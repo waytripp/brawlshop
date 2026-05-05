@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>KUZI SHOP</title>
+    <title>KUZI SHOP PREMIUM</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         body {
@@ -15,13 +15,13 @@
             -webkit-user-select: none;
         }
 
-        /* Шапка с лого */
         .top-nav {
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 15px 20px;
             background: #fff;
+            border-bottom: 1px solid #eee;
         }
 
         .logo-area {
@@ -29,72 +29,58 @@
             align-items: center;
             gap: 10px;
             font-weight: 900;
-            font-size: 18px;
-            letter-spacing: -0.5px;
+            font-size: 20px;
         }
 
-        .logo-img { width: 32px; height: 32px; border-radius: 8px; }
-
-        /* Баннер как на скрине */
+        /* КРУТОЙ БАННЕР */
         .banner-container {
-            padding: 0 15px;
-            margin-bottom: 20px;
+            padding: 15px;
         }
 
         .main-banner {
             width: 100%;
-            height: 180px;
-            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('https://imgur.com/8N6H9Yw.png'); /* Замени на свою картинку */
+            height: 190px;
+            /* Ссылка на качественный фон Brawl Stars */
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+                        url('https://images.wallpapersden.com/image/download/brawl-stars-cool-art_bWlpZ2mUmZqaraWkpJRma2ltrWdnZ20.jpg');
             background-size: cover;
             background-position: center;
-            border-radius: 25px;
+            border-radius: 24px;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
             padding: 20px;
             box-sizing: border-box;
-            color: white;
-            position: relative;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
         }
 
         .banner-text {
-            font-size: 14px;
-            font-weight: 700;
+            color: white;
+            font-size: 22px;
+            font-weight: 900;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
             margin-bottom: 10px;
-            text-transform: uppercase;
+            line-height: 1.1;
         }
 
         .banner-btn {
             background: #007aff;
             color: white;
             border: none;
-            padding: 8px 15px;
-            border-radius: 10px;
+            padding: 10px 20px;
+            border-radius: 12px;
             font-weight: 700;
             width: fit-content;
-            display: flex;
-            align-items: center;
-            gap: 5px;
+            box-shadow: 0 4px 10px rgba(0,122,255,0.3);
         }
 
-        /* Секция категорий */
+        /* ТОВАРЫ */
         .section-title {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-            margin-bottom: 15px;
-        }
-
-        .section-title h2 {
+            padding: 10px 20px;
             font-size: 18px;
-            margin: 0;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            font-weight: 800;
         }
 
-        /* Сетка товаров */
         .items-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -107,24 +93,24 @@
             border-radius: 20px;
             padding: 15px;
             text-align: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             transition: 0.2s;
         }
 
-        .product-card:active { transform: scale(0.96); }
+        .product-card:active { transform: scale(0.95); }
 
-        .gem-icon { width: 70px; height: 70px; margin-bottom: 10px; }
+        .gem-icon { width: 80px; height: 80px; margin-bottom: 8px; }
 
-        .product-name { font-size: 15px; font-weight: 600; color: #333; margin-bottom: 5px; }
+        .product-name { font-size: 14px; font-weight: 700; color: #444; margin-bottom: 8px; }
 
         .product-price {
-            font-size: 17px;
+            font-size: 16px;
             font-weight: 800;
             color: #007aff;
             background: #f0f7ff;
-            padding: 5px 10px;
+            padding: 6px;
             border-radius: 10px;
-            display: inline-block;
+            display: block;
         }
     </style>
 </head>
@@ -132,57 +118,56 @@
 
     <div class="top-nav">
         <div class="logo-area">
-            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968958.png" class="logo-img">
+            <span style="color: #007aff;">🦅</span>
             <span>KUZI SHOP</span>
         </div>
-        <div style="opacity: 0.5;">🔍</div>
+        <div style="font-size: 20px;">⚙️</div>
     </div>
 
     <div class="banner-container">
         <div class="main-banner">
-            <div class="banner-text">BRAWL PASS ДЛЯ<br>НОВОГО СЕЗОНА</div>
-            <button class="banner-btn" onclick="buy('PASS', '699')">Купить Pass ❯</button>
+            <div class="banner-text">ГЕМЫ И ПАССЫ<br>ПО НИЗКИМ ЦЕНАМ</div>
+            <button class="banner-btn" onclick="buy('PASS_ELITE', '990')">Забрать Pass ❯</button>
         </div>
     </div>
 
-    <div class="section-title">
-        <h2>🎮 Мобильные игры</h2>
-        <span style="color: #999; font-size: 14px;">259 ❯</span>
-    </div>
+    <div class="section-title">🔥 Популярные товары</div>
 
     <div class="items-grid">
-        <!-- ТЕСТОВАЯ АКЦИЯ -->
-        <div class="product-card" style="border: 2px solid #00c853;" onclick="buy('TEST_1_GEM', '1')">
+        <!-- ТЕСТОВЫЙ ТОВАР -->
+        <div class="product-card" style="border: 2px solid #00c853;" onclick="buy('TEST_GEMS', '1')">
             <img src="https://cdn-icons-png.flaticon.com/512/3233/3233480.png" class="gem-icon">
             <div class="product-name">30 Гемов (ТЕСТ)</div>
             <div class="product-price" style="color: #00c853; background: #e8f5e9;">1₽</div>
         </div>
 
-        <div class="product-card" onclick="buy('30', '199')">
-            <img src="https://cdn-icons-png.flaticon.com/512/3233/3233480.png" class="gem-icon">
-            <div class="product-name">30 Гемов</div>
-            <div class="product-price">199₽</div>
-        </div>
-
-        <div class="product-card" onclick="buy('80', '449')">
+        <div class="product-card" onclick="buy('GEMS_80', '449')">
             <img src="https://cdn-icons-png.flaticon.com/512/3233/3233480.png" class="gem-icon">
             <div class="product-name">80 Гемов</div>
             <div class="product-price">449₽</div>
         </div>
 
-        <div class="product-card" onclick="buy('170', '899')">
+        <div class="product-card" onclick="buy('GEMS_170', '899')">
             <img src="https://cdn-icons-png.flaticon.com/512/3233/3233480.png" class="gem-icon">
             <div class="product-name">170 Гемов</div>
             <div class="product-price">899₽</div>
+        </div>
+
+        <div class="product-card" onclick="buy('GEMS_360', '1790')">
+            <img src="https://cdn-icons-png.flaticon.com/512/3233/3233480.png" class="gem-icon">
+            <div class="product-name">360 Гемов</div>
+            <div class="product-price">1790₽</div>
         </div>
     </div>
 
     <script>
         let tg = window.Telegram.WebApp;
         tg.expand();
+        // Красим верхнюю полоску Telegram в цвет фона
+        tg.setHeaderColor('#ffffff');
 
         function buy(item, price) {
-            tg.HapticFeedback.impactOccurred('medium');
+            tg.HapticFeedback.notificationOccurred('success');
             const bot_user = "brawlstarssellerbot"; 
             window.location.href = `https://t.me/${bot_user}?start=buy_${item}_${price}`;
         }
