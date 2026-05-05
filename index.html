@@ -7,89 +7,56 @@
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Oswald:wght@700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --glass: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --accent-yellow: #facc15;
-            --accent-blue: #00d2ff;
-        }
-
-        body {
-            background: #000000;
-            color: white;
-            font-family: 'Montserrat', sans-serif;
-            margin: 0;
-            padding: 20px;
-            text-align: center;
-            min-height: 100vh;
-        }
-
-        .header {
-            font-size: 26px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 30px;
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
-        }
-
-        .brawl-pass {
-            background: linear-gradient(135deg, rgba(250, 204, 21, 0.05), rgba(255, 255, 255, 0.01));
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid var(--accent-yellow);
-            border-radius: 24px;
-            padding: 25px;
-            margin-bottom: 30px;
-            box-shadow: 0 0 30px rgba(250, 204, 21, 0.05);
-        }
-
-        .bp-icon { font-size: 55px; margin-bottom: 10px; }
-        .bp-title { font-family: 'Oswald', sans-serif; font-size: 24px; color: var(--accent-yellow); margin-bottom: 20px; text-transform: uppercase; }
-
-        .gems-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .gem-card {
-            background: var(--glass);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 20px;
-            transition: 0.2s;
-        }
-
-        .gem-card:active { transform: scale(0.96); }
-        .gem-amount { font-size: 14px; margin-bottom: 15px; font-weight: bold; color: rgba(255, 255, 255, 0.6); }
-
-        .btn { width: 100%; border: none; padding: 12px; border-radius: 12px; font-weight: 900; font-size: 15px; text-transform: uppercase; cursor: pointer; }
-        .btn-yellow { background: #facc15; color: #000; box-shadow: 0 4px 15px rgba(250, 204, 21, 0.2); }
-        .btn-blue { background: #0085ff; color: white; box-shadow: 0 4px 15px rgba(0, 133, 255, 0.15); }
-
-        h2 { text-align: left; font-size: 16px; margin: 20px 0 15px 5px; color: var(--accent-blue); text-transform: uppercase; }
+        :root { --glass: rgba(255, 255, 255, 0.03); --glass-border: rgba(255, 255, 255, 0.1); --accent-yellow: #facc15; --accent-blue: #00d2ff; --accent-red: #ff4747; }
+        body { background: #000; color: white; font-family: 'Montserrat', sans-serif; margin: 0; padding: 20px; text-align: center; }
+        .header { font-size: 26px; text-transform: uppercase; margin-bottom: 25px; }
+        
+        /* АКЦИЯ */
+        .sale-card { background: linear-gradient(135deg, rgba(255, 71, 71, 0.1), rgba(0,0,0,0.5)); border: 2px dashed var(--accent-red); border-radius: 20px; padding: 15px; margin-bottom: 20px; }
+        
+        .brawl-pass { background: rgba(250, 204, 21, 0.05); backdrop-filter: blur(15px); border: 1px solid var(--accent-yellow); border-radius: 24px; padding: 20px; margin-bottom: 25px; }
+        .bp-title { font-family: 'Oswald', sans-serif; font-size: 22px; color: var(--accent-yellow); text-transform: uppercase; margin-bottom: 15px; }
+        
+        .gems-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .gem-card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 18px; padding: 15px; }
+        
+        .btn { width: 100%; border: none; padding: 10px; border-radius: 10px; font-weight: 900; text-transform: uppercase; cursor: pointer; transition: 0.2s; }
+        .btn-yellow { background: var(--accent-yellow); color: #000; }
+        .btn-blue { background: var(--accent-blue); color: #fff; }
+        .btn-red { background: var(--accent-red); color: #fff; }
+        .btn:active { transform: scale(0.95); }
+        
+        h2 { text-align: left; font-size: 14px; color: var(--accent-blue); margin: 20px 0 10px 5px; }
     </style>
 </head>
 <body>
     <div class="header">🦅 KUZI SHOP</div>
 
+    <!-- ТЕСТОВАЯ АКЦИЯ -->
+    <div class="sale-card">
+        <div style="color: var(--accent-red); font-weight: bold; margin-bottom: 10px;">🔥 ТЕСТОВАЯ АКЦИЯ</div>
+        <div style="font-size: 18px; margin-bottom: 10px;">1 ГЕМ</div>
+        <button class="btn btn-red" onclick="buy('SALE', '1 ГЕМ', 1)">КУПИТЬ — 1₽</button>
+    </div>
+
     <div class="brawl-pass">
-        <div class="bp-icon">🎫</div>
-        <div class="bp-title">Brawl Pass Plus</div>
-        <button class="btn btn-yellow" onclick="buy('PASS', 'PLUS', 999)">КУПИТЬ ЗА 999₽</button>
+        <div style="font-size: 40px; margin-bottom: 5px;">🎫</div>
+        <div class="bp-title">Brawl Pass</div>
+        <button class="btn btn-yellow" onclick="buy('PASS', 'STANDART', 999)">КУПИТЬ ЗА 999₽</button>
     </div>
 
     <h2>КРИСТАЛЛЫ</h2>
     <div class="gems-grid">
-        <div class="gem-card"><div class="gem-amount">30 ГЕМОВ</div><button class="btn btn-blue" onclick="buy('GEMS', '30', 199)">199 ₽</button></div>
-        <div class="gem-card"><div class="gem-amount">80 ГЕМОВ</div><button class="btn btn-blue" onclick="buy('GEMS', '80', 449)">449 ₽</button></div>
-        <div class="gem-card"><div class="gem-amount">170 ГЕМОВ</div><button class="btn btn-blue" onclick="buy('GEMS', '170', 899)">899 ₽</button></div>
-        <div class="gem-card"><div class="gem-amount">360 ГЕМОВ</div><button class="btn btn-blue" onclick="buy('GEMS', '360', 1790)">1790 ₽</button></div>
+        <div class="gem-card"><div>30 ГЕМОВ</div><button class="btn btn-blue" onclick="buy('GEMS', '30', 199)">199 ₽</button></div>
+        <div class="gem-card"><div>80 ГЕМОВ</div><button class="btn btn-blue" onclick="buy('GEMS', '80', 449)">449 ₽</button></div>
+        <div class="gem-card"><div>170 ГЕМОВ</div><button class="btn btn-blue" onclick="buy('GEMS', '170', 899)">899 ₽</button></div>
+        <div class="gem-card"><div>360 ГЕМОВ</div><button class="btn btn-blue" onclick="buy('GEMS', '360', 1790)">1790 ₽</button></div>
     </div>
 
     <script>
         let tg = window.Telegram.WebApp;
         tg.expand();
         tg.setHeaderColor('#000000');
-        tg.setBackgroundColor('#000000');
-
         function buy(type, amount, price) {
             let bot_link = `https://t.me/brawlstarssellerbot?start=buy_${type}_${amount}_${price}`;
             tg.openTelegramLink(bot_link);
